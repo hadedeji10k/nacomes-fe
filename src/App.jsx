@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Navbar from "./components/Navbar";
+import BlogPage from "./components/BlogPage";
 
 const App = () => {
   const sectionRefs = useRef([]);
@@ -36,38 +37,41 @@ const App = () => {
   }, []);
 
   return (
-    <div>
-      <Navbar bgColor={navStyles.bgColor} textColor={navStyles.textColor} />
+    <>
+      <div>
+        <Navbar bgColor={navStyles.bgColor} textColor={navStyles.textColor} />
 
-      <div
-        ref={(el) => (sectionRefs.current[0] = el)}
-        style={{
-          backgroundColor: "green",
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: "2rem",
-          color: "white",
-        }}
-      >
-        Green Section
-      </div>
+        <div
+          ref={(el) => (sectionRefs.current[0] = el)}
+          style={{
+            backgroundColor: "green",
+            height: "100vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "2rem",
+            color: "white",
+          }}
+        >
+          Green Section
+        </div>
 
-      <div
-        ref={(el) => (sectionRefs.current[1] = el)}
-        style={{
-          backgroundColor: "white",
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: "2rem",
-        }}
-      >
-        White Section
+        <div
+          ref={(el) => (sectionRefs.current[1] = el)}
+          style={{
+            backgroundColor: "white",
+            height: "100vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "2rem",
+          }}
+        >
+          White Section
+        </div>
       </div>
-    </div>
+      <BlogPage />
+    </>
   );
 };
 
