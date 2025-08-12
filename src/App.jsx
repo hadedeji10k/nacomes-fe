@@ -33,6 +33,19 @@ const App = () => {
   return (
     <div>
       <Navbar bgColor={bgColor} />
+
+      {/* Green section */}
+      <div
+        ref={greenSectionRef}
+        className="h-screen bg-green-500 flex items-center justify-center"
+      >
+        <h1 className="text-4xl text-white">Green Section</h1>
+      </div>
+
+      {/* White section */}
+      <div className="h-screen bg-white flex items-center justify-center">
+        <h1 className="text-4xl text-black">White Section</h1>
+      </div>
     </div>
   );
 };
