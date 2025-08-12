@@ -11,8 +11,8 @@ import Executives from "./components/Executives";
 import PictureCard from "./components/PictureCard";
 import Footer from "./Footer.jsx";
 import HeroSection from "./HeroSection.jsx";
-import DotGrid from "./blocks/Backgrounds/DotGrid/DotGrid.jsx";
-import Particles from "./blocks/Backgrounds/Particles/Particles.jsx";
+import DotGrid from "./components/blocks/Backgrounds/DotGrid/DotGrid.jsx";
+import Particles from "./components/blocks/Backgrounds/Particles/Particles.jsx";
 
 const App = () => {
   const sectionRefs = useRef([]);
