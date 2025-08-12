@@ -9,10 +9,8 @@ import AboutHistory from "./components/AboutHistory";
 import AboutIcons from "./components/AboutIcons";
 import Executives from "./components/Executives";
 import PictureCard from "./components/PictureCard";
-import Footer from "./Footer.jsx";
-import HeroSection from "./HeroSection.jsx";
-import DotGrid from "./components/blocks/Backgrounds/DotGrid/DotGrid.jsx";
-import Particles from "./components/blocks/Backgrounds/Particles/Particles.jsx";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 const App = () => {
   const sectionRefs = useRef([]);
@@ -92,47 +90,9 @@ const App = () => {
       <Executives />
       <PictureCard />
 
-      <div className="relative w-full">
-        {/* DotGrid as background */}
-        <div className="absolute inset-0 W-full h-full">
-          <DotGrid
-            dotSize={4}
-            gap={12}
-            baseColor="#211A2D"
-            activeColor="#E53724"
-            proximity={60}
-            shockRadius={200}
-            shockStrength={3}
-            resistance={650}
-            returnDuration={3}
-          />
-        </div>
+      <Header />
 
-        {/* Particles as background */}
-        <div className="absolute inset-0 W-full h-full">
-          <div style={{ width: "100%", height: "600px", position: "relative" }}>
-            <Particles
-              particleColors={["#ffffff", "#ffffff"]}
-              particleCount={200}
-              particleSpread={10}
-              speed={0.1}
-              particleBaseSize={100}
-              moveParticlesOnHover={true}
-              alphaParticles={false}
-              disableRotation={false}
-            />
-          </div>
-        </div>
-
-        {/* Foreground content */}
-        <div className="relative">
-          <HeroSection />
-        </div>
-
-        <div className="relative flex flex-col w-full min-h-screen bg-gray-100">
-          <Footer />
-        </div>
-      </div>
+      <Footer />
     </>
   );
 };
