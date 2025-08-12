@@ -1,12 +1,40 @@
-function App() {
+import React, { useEffect, useRef, useState } from "react";
+import Navbar from "./components/Navbar.jsx";
+
+const App = () => {
+  const greenSectionRef = useRef(null);
+  const [bgColor, setBgColor] = useState("green");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setBgColor("green");
+        } else {
+          setBgColor("white");
+        }
+      },
+      {
+        threshold: 0, // triggers when any part is visible
+      }
+    );
+
+    if (greenSectionRef.current) {
+      observer.observe(greenSectionRef.current);
+    }
+
+    return () => {
+      if (greenSectionRef.current) {
+        observer.unobserve(greenSectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <>
-      <p className="text-(--dark-blue)">
-        If you build your components, import them in App.jsx to preview and
-        test, no need to create pages.
-      </p>
-    </>
+    <div>
+      <Navbar bgColor={bgColor} />
+    </div>
   );
-}
+};
 
 export default App;
