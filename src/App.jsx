@@ -1,10 +1,13 @@
+import AboutNacomesHero from "./components/AboutNacomesHero";
+import MeetLecturers from "./components/MeetLecturers";
+import RecentPublications from "./components/RecentPublications";
+
 function App() {
   return (
     <>
-      <p className="text-(--dark-blue)">
-        If you build your components, import them in App.jsx to preview and
-        test, no need to create pages.
-      </p>
+      <AboutNacomesHero />
+      <MeetLecturers />
+      <RecentPublications />
     </>
   );
 }
