@@ -20,3 +20,7 @@
   --light-peach: #fff8f8;
   --orange: #ff8040;
 }
+
+.body {
+  color : var(--light-peach)
+}
