@@ -1,6 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import Navbar from "./components/Navbar";
 import BlogPage from "./components/BlogPage";
+import AboutNacomesHero from "./components/AboutNacomesHero";
+import MeetLecturers from "./components/MeetLecturers";
+import RecentPublications from "./components/RecentPublications";
+import AboutHeader from "./components/AboutHeader";
+import AboutHistory from "./components/AboutHistory";
+import AboutIcons from "./components/AboutIcons";
+import Executives from "./components/Executives";
+import PictureCard from "./components/PictureCard";
 
 const App = () => {
   const sectionRefs = useRef([]);
@@ -71,6 +79,14 @@ const App = () => {
         </div>
       </div>
       <BlogPage />
+      <AboutNacomesHero />
+      <MeetLecturers />
+      <RecentPublications />
+      <AboutHeader />
+      <AboutHistory />
+      <AboutIcons />
+      <Executives />
+      <PictureCard />
     </>
   );
 };

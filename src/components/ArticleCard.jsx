@@ -20,7 +20,7 @@ const ArticleCard = ({
         />
       </div>
       <div className="p-4">
-        <h2 className="text-(--beige) text-base font-semibold text-left mb-1">
+        <h2 className="text-gray-700 text-base font-semibold text-left mb-1">
           {title}
         </h2>
         <p className="text-gray-600 text-sm">{description}</p>
