@@ -64,7 +64,7 @@ const BlogPage = ({
   }, []);
 
   return (
-    <div className="h-screen w-screen transition-transform">
+    <div className="min-h-screen w-screen transition-transform">
       <ScrollIndicator />
       <div
         className="relative lg:h-[55%] h-[55%] w-full bg-cover max-[720px]:bg-center bg-no-repeat bg-(--dark-blue) flex items-center sm:pl-[20%] p-4"

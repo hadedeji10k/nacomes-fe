@@ -1,28 +1,28 @@
-import imag2 from "./assets/hacker.png";
+import imag2 from "../assets/hacker.png";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 import { CiLocationArrow1 } from "react-icons/ci";
 
 const Footer = () => (
-  <div className="relative flex flex-col w-full min-h-screen bg-gray-100">
-    <footer className="bg-gray-800 text-gray-200">
-      {/* Banner */}
+  <div className="relative flex flex-col w-full">
+    <div
+      className="bg-blue-600 text-white text-2xl text-center py-5 px-3 
+    -mb-14 mr-48 ml-48 rounded-md shadow-[0px_3px_5px_black] flex gap-[3rem] items-center justify-center z-[10]"
+    >
+      <div className="[text-shadow:-2px_1px_2px_black] ">
+        Have you paid your dues?
+      </div>
       <div
-        className="bg-blue-600 text-white text-2xl text-center py-5 px-3 
-    -mt-8 mr-48 mb-10 ml-48 rounded-md shadow-[0px_3px_5px_black] flex gap-[3rem] items-center justify-center"
-      >
-        <div className="[text-shadow:-2px_1px_2px_black] ">
-          Have you paid your dues?
-        </div>
-        <div
-          className="bg-blue-950 text-base p-4 font-bold rounded-full flex items-center justify-center text-white gap-[17px] pr-[30px] pl-[30px]
+        className="bg-blue-950 text-base p-4 font-bold rounded-full flex items-center justify-center text-white gap-[17px] pr-[30px] pl-[30px]
       shadow-[0px_3px_3px_black] hover:scale-105 transform transition"
-        >
-          <div>Click here to pay</div>
-          <div className="text-3xl">
-            <CiLocationArrow1 />
-          </div>
+      >
+        <div>Click here to pay</div>
+        <div className="text-3xl">
+          <CiLocationArrow1 />
         </div>
       </div>
+    </div>
+    <footer className="bg-gray-800 text-gray-200 pt-30">
+      {/* Banner */}
 
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-6 flex justify-between pl-[84px] mr-[-28px] pr-[25px]">

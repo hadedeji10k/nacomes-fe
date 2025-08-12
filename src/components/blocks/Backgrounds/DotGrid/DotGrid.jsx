@@ -1,8 +1,3 @@
-/*
-	Installed from https://reactbits.dev/tailwind/
-*/
-
-'use client';
 import { useRef, useEffect, useCallback, useMemo } from "react";
 import { gsap } from "gsap";
 import { InertiaPlugin } from "gsap/InertiaPlugin";
@@ -70,40 +65,38 @@ const DotGrid = ({
     return p;
   }, [dotSize]);
 
-const buildGrid = useCallback(() => {
-  const wrap = wrapperRef.current;
-  const canvas = canvasRef.current;
-  if (!wrap || !canvas) return;
+  const buildGrid = useCallback(() => {
+    const wrap = wrapperRef.current;
+    const canvas = canvasRef.current;
+    if (!wrap || !canvas) return;
 
-  const { width, height } = wrap.getBoundingClientRect();
-  const dpr = window.devicePixelRatio || 1;
+    const { width, height } = wrap.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
 
-  canvas.width = width * dpr;
-  canvas.height = height * dpr;
-  canvas.style.width = `${width}px`;
-  canvas.style.height = `${height}px`;
-  const ctx = canvas.getContext("2d");
-  if (ctx) ctx.scale(dpr, dpr);
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    const ctx = canvas.getContext("2d");
+    if (ctx) ctx.scale(dpr, dpr);
 
-  const cell = dotSize + gap;
+    const cell = dotSize + gap;
 
-  // Cover the ENTIRE area, no centering
-  const cols = Math.ceil(width / cell);
-  const rows = Math.ceil(height / cell);
+    // Cover the ENTIRE area, no centering
+    const cols = Math.ceil(width / cell);
+    const rows = Math.ceil(height / cell);
 
-  const dots = [];
-  for (let y = 0; y < rows; y++) {
-    for (let x = 0; x < cols; x++) {
-      const cx = x * cell + dotSize / 2;
-      const cy = y * cell + dotSize / 2;
-      dots.push({ cx, cy, xOffset: 0, yOffset: 0, _inertiaApplied: false });
+    const dots = [];
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        const cx = x * cell + dotSize / 2;
+        const cy = y * cell + dotSize / 2;
+        dots.push({ cx, cy, xOffset: 0, yOffset: 0, _inertiaApplied: false });
+      }
     }
-  }
 
-  dotsRef.current = dots;
-}, [dotSize, gap]);
-
-
+    dotsRef.current = dots;
+  }, [dotSize, gap]);
 
   useEffect(() => {
     if (!circlePath) return;
@@ -207,7 +200,7 @@ const buildGrid = useCallback(() => {
                 xOffset: 0,
                 yOffset: 0,
                 duration: returnDuration,
-                ease: "elastic.out(1,0.75)"
+                ease: "elastic.out(1,0.75)",
               });
               dot._inertiaApplied = false;
             },
@@ -235,7 +228,7 @@ const buildGrid = useCallback(() => {
                 xOffset: 0,
                 yOffset: 0,
                 duration: returnDuration,
-                ease: "elastic.out(1,0.75)"
+                ease: "elastic.out(1,0.75)",
               });
               dot._inertiaApplied = false;
             },

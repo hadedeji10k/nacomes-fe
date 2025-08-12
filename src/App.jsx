@@ -80,6 +80,8 @@ const App = () => {
           White Section
         </div>
       </div>
+      <Header />
+
       <BlogPage />
       <AboutNacomesHero />
       <MeetLecturers />
@@ -88,9 +90,6 @@ const App = () => {
       <AboutHistory />
       <AboutIcons />
       <Executives />
-      <PictureCard />
-
-      <Header />
 
       <Footer />
     </>

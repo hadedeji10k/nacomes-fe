@@ -1,9 +1,5 @@
-// src/components/Hero.jsx
-import React from "react";
-import heroIllustration from "./assets/man.png";
-import imag2 from "./assets/hacker.png";
-import heroimage from './assets/heroimage.png';
-
+import imag2 from "../assets/hacker.png";
+import heroimage from "../assets/heroimage.png";
 
 function HeroSection() {
   return (
@@ -11,39 +7,38 @@ function HeroSection() {
       <section className="relative overflow-hidden">
         {/* Background gradient - RGB blending */}
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom_right,#0077b6,#003566)]" />
-        
+
         {/* Decorative blurred shapes */}
         <div className="absolute -left-40 -top-40 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -right-24 bottom-0 w-72 h-72 bg-white opacity-10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="flex">
-
-            {/* Top navigation bar */}
-            <nav className="flex items-center justify-between p-6 md:px-12 gap-3 w-full">
-                <div className="flex items-center gap-2">
-                    <img src={imag2} alt="hacker" className="w-20"/>
-                    <div className="text-white font-bold text-xl">NACOMES</div>
-                </div>
-                <div className="space-x-4">
-                <a href="#features" className="text-white hover:underline">
-                    Features
-                </a>
-                <a href="#courses" className="text-white hover:underline">
-                    Courses
-                </a>
-                <a href="#about" className="text-white hover:underline">
-                    About
-                </a>
-                <a
-                    href="#login"
-                    className="px-4 py-2 bg-white text-blue-600 font-semibold rounded-lg 
+          {/* Top navigation bar */}
+          <nav className="flex items-center justify-between p-6 md:px-12 gap-3 w-full">
+            <div className="flex items-center gap-2">
+              <img src={imag2} alt="hacker" className="w-20" />
+              <div className="text-white font-bold text-xl">NACOMES</div>
+            </div>
+            <div className="space-x-4">
+              <a href="#features" className="text-white hover:underline">
+                Features
+              </a>
+              <a href="#courses" className="text-white hover:underline">
+                Courses
+              </a>
+              <a href="#about" className="text-white hover:underline">
+                About
+              </a>
+              <a
+                href="#login"
+                className="px-4 py-2 bg-white text-blue-600 font-semibold rounded-lg 
                     hover:scale-105 transform transition
                     shadow-[-2px_2px_8px_black]"
-                >
-                    Login
-                </a>
-                </div>
-            </nav>
+              >
+                Login
+              </a>
+            </div>
+          </nav>
         </div>
 
         <div className="container mx-auto px-6 py-20 md:py-28">
@@ -51,20 +46,25 @@ function HeroSection() {
             {/* Left column: text */}
             <div className="w-full md:w-1/2 pr-16 pb-16 pl-24 mx-20">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
-                Welcome to the <span className="inline-block my-4 mx-[-8] -ml-[70px] text-8xl bg-orange-500 py-2.5 px-5
+                Welcome to the{" "}
+                <span
+                  className="inline-block my-4 mx-[-8] -ml-[70px] text-8xl bg-orange-500 py-2.5 px-5
                 shadow-[-3px_3px_8px_-1px_black] 
                 rounded-[16px] 
                 [text-shadow:-3px_1px_6px_black] 
                 bg-[linear-gradient(38deg,#be4d07,#f88914)]
-                ">NACOMES</span>
-                 official website
+                "
+                >
+                  NACOMES
+                </span>
+                official website
                 <span className="text-blue-300">.</span>
               </h1>
 
               <p className="mt-3 text-white/90 text-base sm:text-lg max-w-xl">
                 A platform that provides Computer Engineering students to
-                explore various courses, enhancing their learning
-                experience with a user-friendly interface.
+                explore various courses, enhancing their learning experience
+                with a user-friendly interface.
               </p>
 
               <div className="mt-4 flex flex-wrap items-center gap-3">
