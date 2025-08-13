@@ -5,158 +5,116 @@ import { IoReorderThreeOutline } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 
 const Navbar = ({ bgColor }) => {
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [showSidebar, setSidebar] = useState(false);
+  const [showNav, setShowNav] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   useEffect(() => {
     let scrollTimeout;
 
     const handleScroll = () => {
-      // Only hide navbar if sidebar is NOT open
-      if (!showSidebar) {
-        setShowNavbar(false);
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-          setShowNavbar(true);
-        }, 300);
+      const currentScrollY = window.scrollY;
+
+      if (showSidebar) {
+        // If sidebar is open, navbar stays visible
+        setShowNav(true);
+        return;
       }
+
+      if (currentScrollY > lastScrollY) {
+        // scrolling down
+        setShowNav(false);
+      } else {
+        // scrolling up
+        setShowNav(true);
+      }
+
+      setLastScrollY(currentScrollY);
+
+      // Optional: small delay to show navbar again after stop scrolling
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        setShowNav(true);
+      }, 200);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
       clearTimeout(scrollTimeout);
     };
-  }, [showSidebar]);
+  }, [lastScrollY, showSidebar]);
+
+  const bgClass =
+    bgColor === "white"
+      ? "bg-white text-black shadow-md"
+      : "bg-transparent text-white";
 
   return (
-    <>
-      {/* Wrapper for all main content */}
-      <div
-        className={`transition-transform duration-300 ${
-          showSidebar ? "-translate-x-80" : "translate-x-0"
-        }`}
+    <div className="relative flex transition-all duration-300 ease-in-out">
+      {/* Navbar */}
+      <nav
+        className={`fixed left-0 w-full py-5 px-6 transition-all duration-300 ease-in-out z-50 ${bgClass} flex items-center justify-between`}
+        style={{
+          top: showNav || showSidebar ? "0" : "-80px",
+          paddingRight: showSidebar ? "20rem" : "1.5rem", // make room for sidebar
+        }}
       >
-        {/* Navbar */}
-        <nav
-          className={`
-          max-tablet:fixed min-tablet:relative max-tablet:z-51 left-0 w-full py-5 px-6 flex items-center justify-between z-50
-          transition-all duration-500 ease-in-out
-          ${
-            showNavbar
-              ? "translate-y-0 opacity-100"
-              : "-translate-y-full opacity-0"
-          }
-          ${
-            bgColor === "green"
-              ? "bg-[var(--light-blue)] text-white"
-              : "bg-white text-[#222]"
-          }
-        `}
+        <h2 className="font-semibold text-[1.5rem]">Learning</h2>
+
+        {/* Desktop Links */}
+        <div className="flex max-tablet:hidden text-[1.15rem] items-center gap-8">
+          {[
+            ["Home", "/home"],
+            ["About", "/aboutus"],
+            ["Courses", "/courses"],
+            ["Instructors", "/Instructors"],
+            ["Testimonial", "/testimonial"],
+            ["Blog", "/blog"],
+            ["Contact", "/contact"],
+          ].map(([label, path]) => (
+            <NavLink
+              key={path}
+              className={({ isActive }) =>
+                `hover:text-[#ccc5] transition-colors duration-150 ${
+                  isActive ? "text-[#555]/80" : "text-[#fff]"
+                }`
+              }
+              to={path}
+            >
+              {label}
+            </NavLink>
+          ))}
+        </div>
+
+        {/* Desktop Contact */}
+        <div className="flex max-tablet:hidden items-center gap-4">
+          <LuPhoneCall className="text-[1.055rem] mr-2" />
+          <p className="text-[1.05rem]">+243 7016 1275 02</p>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="flex min-tablet:hidden items-end"
+          onClick={() => setShowSidebar((prev) => !prev)}
+          aria-label="Toggle sidebar"
         >
-          <h2 className="font-semibold text-[1.5rem]">Learning</h2>
+          {showSidebar ? (
+            <IoMdClose className="text-[1.5rem]" />
+          ) : (
+            <IoReorderThreeOutline className="text-[1.5rem]" />
+          )}
+        </button>
+      </nav>
 
-          {/* Desktop Links */}
-          <div className="flex max-tablet:hidden text-[1.15rem] items-center gap-8">
-            <NavLink
-              className={({ isActive }) =>
-                `hover:text-[#ccc5] transition-colors duration-150
-              ${isActive ? "text-[#555]/80" : "text-[#fff]"}`
-              }
-              to="/home"
-            >
-              Home
-            </NavLink>
-            <NavLink
-              className={({ isActive }) =>
-                `hover:text-[#ccc5] transition-colors duration-150 ${
-                  isActive ? "text-[#555]/80" : "text-[#fff]"
-                }`
-              }
-              to="/aboutus"
-            >
-              About
-            </NavLink>
-            <NavLink
-              className={({ isActive }) =>
-                `hover:text-[#ccc5] transition-colors duration-150 ${
-                  isActive ? "text-[#555]/80" : "text-[#fff]"
-                }`
-              }
-              to="/courses"
-            >
-              Courses
-            </NavLink>
-            <NavLink
-              className={({ isActive }) =>
-                `hover:text-[#ccc5] transition-colors duration-150 ${
-                  isActive ? "text-[#555]/80" : "text-[#fff]"
-                }`
-              }
-              to="/Instructors"
-            >
-              Instructors
-            </NavLink>
-            <NavLink
-              className={({ isActive }) =>
-                `hover:text-[#ccc5] transition-colors duration-150 ${
-                  isActive ? "text-[#555]/80" : "text-[#fff]"
-                }`
-              }
-              to="/testimonial"
-            >
-              Testimonial
-            </NavLink>
-            <NavLink
-              className={({ isActive }) =>
-                `hover:text-[#ccc5] transition-colors duration-150 ${
-                  isActive ? "text-[#555]/80" : "text-[#fff]"
-                }`
-              }
-              to="/blog"
-            >
-              Blog
-            </NavLink>
-            <NavLink
-              className={({ isActive }) =>
-                `hover:text-[#ccc5] transition-colors duration-150 ${
-                  isActive ? "text-[#555]/80" : "text-[#fff]"
-                }`
-              }
-              to="/contact"
-            >
-              Contact
-            </NavLink>
-          </div>
-
-          {/* Desktop Contact */}
-          <div className="flex max-tablet:hidden items-center gap-4">
-            <LuPhoneCall className="text-[1.055rem] mr-2" />
-            <p className="text-[1.05rem]">+243 7016 1275 02</p>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="flex min-tablet:hidden items-end"
-            onClick={() => setSidebar((prev) => !prev)}
-            aria-label="Toggle sidebar"
-          >
-            {showSidebar ? (
-              <IoMdClose className="text-[1.5rem]" />
-            ) : (
-              <IoReorderThreeOutline className="text-[1.5rem]" />
-            )}
-          </button>
-        </nav>
-      </div>
-
-      {/* Sidebar — fixed on right */}
+      {/* Sidebar */}
       <div
         className={`
-        fixed top-0 right-0 w-80 h-full bg-[var(--dark-blue)] z-[60] p-6 min-tablet:z[-1]
-        transition-transform duration-300
-        ${showSidebar ? "translate-x-0" : "translate-x-full"}
-      `}
+      fixed top-0 right-0 h-full bg-[var(--dark-blue)] z-[60] p-6
+      transition-transform duration-300
+      ${showSidebar ? "translate-x-0" : "translate-x-full"}
+    `}
+        style={{ width: "20rem" }}
       >
         <div className="flex flex-col justify-center text-[1.23rem] h-full pl-2.5 text-white space-y-4">
           {[
@@ -170,16 +128,22 @@ const Navbar = ({ bgColor }) => {
           ].map(([label, path]) => (
             <NavLink
               key={path}
-              className="border-b-1 border-[#ccc5] pb-3.5 text-[1.22rem] hover:text-[#ccc5] transition-colors duration-150"
               to={path}
-              onClick={() => setSidebar(false)}
+              onClick={() => setShowSidebar(false)}
+              className={({ isActive }) =>
+                `border-b-1 pb-3.5 text-[1.22rem] transition-colors duration-150 ${
+                  isActive
+                    ? "text-[#555]/80" // Active link style
+                    : "text-white border-[#ccc5] hover:text-[#ccc5]" // Inactive link style
+                }`
+              }
             >
               {label}
             </NavLink>
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
