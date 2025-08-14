@@ -1,20 +1,32 @@
 import React, { useEffect, useRef, useState } from "react";
-import Navbar from "./components/Nav";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   const sectionRefs = useRef([]);
-  const [isNavbarVisible, setIsNavbarVisible] = useState(false);
+  const [navStyles, setNavStyles] = useState({
+    bgColor: "transparent",
+    textColor: "white",
+  });
 
   const handleScroll = () => {
-    const whiteSection = sectionRefs.current[1];
-    if (!whiteSection) return;
+    const greenSection = sectionRefs.current[0];
+    if (!greenSection) return;
 
-    const rect = whiteSection.getBoundingClientRect();
+    const rect = greenSection.getBoundingClientRect();
+    const sectionHeight = rect.height;
+    const visibleHeight =
+      Math.min(window.innerHeight, rect.bottom) - Math.max(0, rect.top);
 
-    const fullyVisible =
-      rect.top >= 0 && rect.bottom <= window.innerHeight;
+    const visiblePercent = (visibleHeight / sectionHeight) * 100;
 
-    setIsNavbarVisible(fullyVisible);
+    if (visiblePercent >= 60) {
+      // Mostly in green
+      setNavStyles({ bgColor: "transparent", textColor: "white" });
+    } else if (visiblePercent <= 20) {
+      // Mostly out of green
+      setNavStyles({ bgColor: "white", textColor: "black" });
+    }
+    // If in between 20% and 60%, keep the last state (no flicker)
   };
 
   useEffect(() => {
@@ -25,10 +37,7 @@ const App = () => {
 
   return (
     <div>
-      <Navbar
-        isVisible={isNavbarVisible}
-        bgColor={isNavbarVisible ? "white" : "transparent"}
-      />
+      <Navbar bgColor={navStyles.bgColor} textColor={navStyles.textColor} />
 
       <div
         ref={(el) => (sectionRefs.current[0] = el)}
@@ -38,8 +47,8 @@ const App = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "white",
           fontSize: "2rem",
+          color: "white",
         }}
       >
         Green Section
@@ -63,55 +72,3 @@ const App = () => {
 };
 
 export default App;
-
-
-
-// const App = () => {
-//   const greenSectionRef = useRef(null);
-//   const [bgColor, setBgColor] = useState("green");
-
-//   useEffect(() => {
-//     const observer = new IntersectionObserver(
-//       ([entry]) => {
-//         if (entry.isIntersecting) {
-//           setBgColor("green");
-//         } else {
-//           setBgColor("white");
-//         }
-//       },
-//       {
-//         threshold: 0, // triggers when any part is visible
-//       }
-//     );
-
-//     if (greenSectionRef.current) {
-//       observer.observe(greenSectionRef.current);
-//     }
-
-//     return () => {
-//       if (greenSectionRef.current) {
-//         observer.unobserve(greenSectionRef.current);
-//       }
-//     };
-//   }, []);
-
-//   return (
-//     <div>
-//       <Navbar bgColor={bgColor} />
-
-//       {/* Green section */}
-//       <div
-//         ref={greenSectionRef}
-//         className="h-screen bg-green-500 flex items-center justify-center"
-//       >
-//         <h1 className="text-4xl text-white">Green Section</h1>
-//       </div>
-
-//       {/* White section */}
-//       <div className="h-screen bg-white flex items-center justify-center">
-//         <h1 className="text-4xl text-black">White Section</h1>
-//       </div>
-//     </div>
-//   );
-// };
-// App.jsx

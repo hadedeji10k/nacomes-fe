@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router";
 import { LuPhoneCall } from "react-icons/lu";
-import { IoReorderThreeOutline } from "react-icons/io5";
-import { IoMdClose } from "react-icons/io";
+import { IoReorderThreeOutline, IoClose } from "react-icons/io5";
 
-const Navbar = ({ bgColor }) => {
+const Navbar = ({ bgColor, textColor }) => {
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showSidebar, setShowSidebar] = useState(false);
@@ -16,7 +15,6 @@ const Navbar = ({ bgColor }) => {
       const currentScrollY = window.scrollY;
 
       if (showSidebar) {
-        // If sidebar is open, navbar stays visible
         setShowNav(true);
         return;
       }
@@ -31,7 +29,6 @@ const Navbar = ({ bgColor }) => {
 
       setLastScrollY(currentScrollY);
 
-      // Optional: small delay to show navbar again after stop scrolling
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
         setShowNav(true);
@@ -45,22 +42,24 @@ const Navbar = ({ bgColor }) => {
     };
   }, [lastScrollY, showSidebar]);
 
-  const bgClass =
-    bgColor === "white"
-      ? "bg-white text-black shadow-md"
-      : "bg-transparent text-white";
-
   return (
     <div className="relative flex transition-all duration-300 ease-in-out">
-      {/* Navbar */}
       <nav
-        className={`fixed left-0 w-full py-5 px-6 transition-all duration-300 ease-in-out z-50 ${bgClass} flex items-center justify-between`}
+        className={`fixed left-0 w-full py-5 px-6 transition-all duration-300 ease-in-out z-50 flex items-center justify-between`}
         style={{
           top: showNav || showSidebar ? "0" : "-80px",
-          paddingRight: showSidebar ? "20rem" : "1.5rem", // make room for sidebar
+          backgroundColor: bgColor,
+          color: textColor,
+          paddingRight: showSidebar ? "20rem" : "1.5rem",
         }}
       >
-        <h2 className="font-semibold text-[1.5rem]">Learning</h2>
+        {/* Logo */}
+        <h2
+          className="font-semibold text-[1.5rem]"
+          style={{ color: textColor }}
+        >
+          Learning
+        </h2>
 
         {/* Desktop Links */}
         <div className="flex max-tablet:hidden text-[1.15rem] items-center gap-8">
@@ -75,12 +74,9 @@ const Navbar = ({ bgColor }) => {
           ].map(([label, path]) => (
             <NavLink
               key={path}
-              className={({ isActive }) =>
-                `hover:text-[#ccc5] transition-colors duration-150 ${
-                  isActive ? "text-[#555]/80" : "text-[#fff]"
-                }`
-              }
               to={path}
+              style={{ color: textColor }}
+              className="hover:opacity-70 transition-colors duration-150"
             >
               {label}
             </NavLink>
@@ -88,7 +84,10 @@ const Navbar = ({ bgColor }) => {
         </div>
 
         {/* Desktop Contact */}
-        <div className="flex max-tablet:hidden items-center gap-4">
+        <div
+          className="flex max-tablet:hidden items-center gap-4"
+          style={{ color: textColor }}
+        >
           <LuPhoneCall className="text-[1.055rem] mr-2" />
           <p className="text-[1.05rem]">+243 7016 1275 02</p>
         </div>
@@ -98,9 +97,10 @@ const Navbar = ({ bgColor }) => {
           className="flex min-tablet:hidden items-end"
           onClick={() => setShowSidebar((prev) => !prev)}
           aria-label="Toggle sidebar"
+          style={{ color: textColor }}
         >
           {showSidebar ? (
-            <IoMdClose className="text-[1.5rem]" />
+            <IoClose className="text-[1.5rem]" />
           ) : (
             <IoReorderThreeOutline className="text-[1.5rem]" />
           )}
@@ -109,11 +109,9 @@ const Navbar = ({ bgColor }) => {
 
       {/* Sidebar */}
       <div
-        className={`
-      fixed top-0 right-0 h-full bg-[var(--dark-blue)] z-[60] p-6
-      transition-transform duration-300
-      ${showSidebar ? "translate-x-0" : "translate-x-full"}
-    `}
+        className={`fixed top-0 right-0 h-full bg-[var(--dark-blue)] z-[60] p-6 transition-transform duration-300 ${
+          showSidebar ? "translate-x-0" : "translate-x-full"
+        }`}
         style={{ width: "20rem" }}
       >
         <div className="flex flex-col justify-center text-[1.23rem] h-full pl-2.5 text-white space-y-4">
@@ -130,13 +128,7 @@ const Navbar = ({ bgColor }) => {
               key={path}
               to={path}
               onClick={() => setShowSidebar(false)}
-              className={({ isActive }) =>
-                `border-b-1 pb-3.5 text-[1.22rem] transition-colors duration-150 ${
-                  isActive
-                    ? "text-[#555]/80" // Active link style
-                    : "text-white border-[#ccc5] hover:text-[#ccc5]" // Inactive link style
-                }`
-              }
+              className="border-b-1 pb-3.5 text-[1.22rem] transition-colors duration-150 text-white hover:opacity-70"
             >
               {label}
             </NavLink>
