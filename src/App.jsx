@@ -8,9 +8,9 @@ import AboutHeader from "./components/AboutHeader";
 import AboutHistory from "./components/AboutHistory";
 import AboutIcons from "./components/AboutIcons";
 import Executives from "./components/Executives";
-import PictureCard from "./components/PictureCard";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import BlogView from "./components/BlogView";
 
 const App = () => {
   const sectionRefs = useRef([]);
@@ -83,6 +83,7 @@ const App = () => {
       <Header />
 
       <BlogPage />
+      <BlogView />
       <AboutNacomesHero />
       <MeetLecturers />
       <RecentPublications />

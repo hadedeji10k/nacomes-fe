@@ -82,9 +82,9 @@ const BlogPage = ({
             duration: 1,
             ease: "easeInOut",
           }}
-          className="flex flex-col gap-6 sm:w-[40%]"
+          className="flex flex-col max-[640px]:pl-6 max-[640px]:gap-3  gap-6 sm:w-[40%]"
         >
-          <div className="text-(--orange) items-center align-middle hover:cursor-pointer">
+          <div className="text-(--beige) items-center align-middle hover:cursor-pointer font-[400]">
             <span className="text-nowrap">Latest Blog</span>
           </div>
 
@@ -101,7 +101,7 @@ const BlogPage = ({
               duration: 2,
               ease: [0.42, 0, 0.58, 1],
             }}
-            className="text-white text-3xl sm:text-5xl min[1440px]:text-6xl text-left"
+            className="text-white text-3xl sm:text-5xl min[1440px]:text-6xl text-left font-[600]"
           >
             Trending topic <br />
             Learning articles.

@@ -17,7 +17,7 @@ const BlogView = ({
     <div className="h-screen w-screen transition-transform">
       <ScrollIndicator />
       <div
-        className="relative lg:h-[90%] h-[90%] w-full bg-cover max-[720px]:bg-center bg-no-repeat bg-(--light-blue) flex items-center sm:pl-[20%] p-4"
+        className="relative lg:h-[90%] h-[90%] w-full bg-cover max-[720px]:bg-center bg-no-repeat bg-(--dark-blue) flex items-center sm:pl-[20%] p-4"
         style={{ backgroundImage: `url(${imageUrl})` }}
       >
         <motion.div
@@ -27,7 +27,7 @@ const BlogView = ({
           className="flex flex-col gap-10 sm:w-[40%]"
         >
           <div className="text-(--beige) items-center align-middle font-semibold hover:cursor-pointer">
-            <span className="text-nowrap">{updated}</span>
+            <span className="text">{updated}</span>
             <span className="before:content-['•'] before:mx-2">{genre}</span>
           </div>
 
