@@ -11,6 +11,7 @@ import Executives from "./components/Executives";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import BlogView from "./components/BlogView";
+import FunFact from "./components/FunFact";
 
 const App = () => {
   const mainContainerRef = useRef(null);
@@ -29,6 +30,7 @@ const App = () => {
       <AboutHistory />
       <AboutIcons />
       <Executives />
+      <FunFact />
 
       <Footer />
     </div>

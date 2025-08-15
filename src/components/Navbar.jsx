@@ -70,7 +70,7 @@ const Navbar = ({ mainContainerRef }) => {
   }, [lastScrollY, showSidebar]);
 
   return (
-    <div className="relative flex transition-all duration-300 ease-in-out">
+    <div className="relative flex transition-all duration-300 ease-in-out font-['Space Grotesk']">
       <nav
         className={`fixed left-0 w-full py-5 px-6 transition-all duration-300 ease-in-out z-50 flex items-center justify-between`}
         style={{
