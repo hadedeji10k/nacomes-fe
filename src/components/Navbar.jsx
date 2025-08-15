@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router";
 import { LuPhoneCall } from "react-icons/lu";
 import { IoReorderThreeOutline, IoClose } from "react-icons/io5";
 
-const Navbar = ({ bgColor, textColor }) => {
+const Navbar = ({ mainContainerRef }) => {
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showSidebar, setShowSidebar] = useState(false);
+
+  const [navStyles, setNavStyles] = useState({
+      bgColor: "transparent",
+      textColor: "white",
+    });
 
   useEffect(() => {
     let scrollTimeout;
@@ -35,9 +40,31 @@ const Navbar = ({ bgColor, textColor }) => {
       }, 200);
     };
 
+    const handleMouseScroll = () => {
+    if (!mainContainerRef) return;
+
+    const rect = mainContainerRef.getBoundingClientRect();
+    const sectionHeight = rect.height;
+    const visibleHeight =
+      Math.min(window.innerHeight, rect.bottom) - Math.max(0, rect.top);
+
+    const visiblePercent = (visibleHeight / sectionHeight) * 100;
+
+    if (visiblePercent >= 60) {
+      // Mostly in green
+      setNavStyles({ bgColor: "transparent", textColor: "white" });
+    } else if (visiblePercent <= 20) {
+      // Mostly out of green
+      setNavStyles({ bgColor: "white", textColor: "black" });
+    }
+    // If in between 20% and 60%, keep the last state (no flicker)
+  };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleMouseScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleMouseScroll);
       clearTimeout(scrollTimeout);
     };
   }, [lastScrollY, showSidebar]);
@@ -48,15 +75,15 @@ const Navbar = ({ bgColor, textColor }) => {
         className={`fixed left-0 w-full py-5 px-6 transition-all duration-300 ease-in-out z-50 flex items-center justify-between`}
         style={{
           top: showNav || showSidebar ? "0" : "-80px",
-          backgroundColor: bgColor,
-          color: textColor,
+          backgroundColor: navStyles.bgColor,
+          color: navStyles.textColor,
           paddingRight: showSidebar ? "20rem" : "1.5rem",
         }}
       >
         {/* Logo */}
         <h2
           className="font-semibold text-[1.5rem]"
-          style={{ color: textColor }}
+          style={{ color: navStyles.textColor }}
         >
           Learning
         </h2>
@@ -75,7 +102,7 @@ const Navbar = ({ bgColor, textColor }) => {
             <NavLink
               key={path}
               to={path}
-              style={{ color: textColor }}
+              style={{ color: navStyles.textColor }}
               className="hover:opacity-70 transition-colors duration-150"
             >
               {label}
@@ -86,7 +113,7 @@ const Navbar = ({ bgColor, textColor }) => {
         {/* Desktop Contact */}
         <div
           className="flex max-tablet:hidden items-center gap-4"
-          style={{ color: textColor }}
+          style={{ color: navStyles.textColor }}
         >
           <LuPhoneCall className="text-[1.055rem] mr-2" />
           <p className="text-[1.05rem]">+243 7016 1275 02</p>
@@ -97,7 +124,7 @@ const Navbar = ({ bgColor, textColor }) => {
           className="flex min-tablet:hidden items-end"
           onClick={() => setShowSidebar((prev) => !prev)}
           aria-label="Toggle sidebar"
-          style={{ color: textColor }}
+          style={{ color: navStyles.textColor }}
         >
           {showSidebar ? (
             <IoClose className="text-[1.5rem]" />
