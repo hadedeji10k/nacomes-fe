@@ -1,4 +1,3 @@
-import imag2 from "../assets/hacker.png";
 import heroimage from "../assets/heroimage.png";
 
 function HeroSection() {
@@ -11,35 +10,6 @@ function HeroSection() {
         {/* Decorative blurred shapes */}
         <div className="absolute -left-40 -top-40 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -right-24 bottom-0 w-72 h-72 bg-white opacity-10 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="flex">
-          {/* Top navigation bar */}
-          <nav className="flex items-center justify-between p-6 md:px-12 gap-3 w-full">
-            <div className="flex items-center gap-2">
-              <img src={imag2} alt="hacker" className="w-20" />
-              <div className="text-white font-bold text-xl">NACOMES</div>
-            </div>
-            <div className="space-x-4">
-              <a href="#features" className="text-white hover:underline">
-                Features
-              </a>
-              <a href="#courses" className="text-white hover:underline">
-                Courses
-              </a>
-              <a href="#about" className="text-white hover:underline">
-                About
-              </a>
-              <a
-                href="#login"
-                className="px-4 py-2 bg-white text-blue-600 font-semibold rounded-lg 
-                    hover:scale-105 transform transition
-                    shadow-[-2px_2px_8px_black]"
-              >
-                Login
-              </a>
-            </div>
-          </nav>
-        </div>
 
         <div className="container mx-auto px-6 py-20 md:py-28">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-1">

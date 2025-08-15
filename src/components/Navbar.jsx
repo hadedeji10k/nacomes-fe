@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router";
-import { LuPhoneCall } from "react-icons/lu";
+import imag2 from "../assets/hacker.png";
 import { IoReorderThreeOutline, IoClose } from "react-icons/io5";
 
 const Navbar = ({ mainContainerRef }) => {
@@ -9,9 +8,9 @@ const Navbar = ({ mainContainerRef }) => {
   const [showSidebar, setShowSidebar] = useState(false);
 
   const [navStyles, setNavStyles] = useState({
-      bgColor: "transparent",
-      textColor: "white",
-    });
+    bgColor: "transparent",
+    textColor: "white",
+  });
 
   useEffect(() => {
     let scrollTimeout;
@@ -41,24 +40,24 @@ const Navbar = ({ mainContainerRef }) => {
     };
 
     const handleMouseScroll = () => {
-    if (!mainContainerRef) return;
+      if (!mainContainerRef) return;
 
-    const rect = mainContainerRef.getBoundingClientRect();
-    const sectionHeight = rect.height;
-    const visibleHeight =
-      Math.min(window.innerHeight, rect.bottom) - Math.max(0, rect.top);
+      const rect = mainContainerRef.getBoundingClientRect();
+      const sectionHeight = rect.height;
+      const visibleHeight =
+        Math.min(window.innerHeight, rect.bottom) - Math.max(0, rect.top);
 
-    const visiblePercent = (visibleHeight / sectionHeight) * 100;
+      const visiblePercent = (visibleHeight / sectionHeight) * 100;
 
-    if (visiblePercent >= 60) {
-      // Mostly in green
-      setNavStyles({ bgColor: "transparent", textColor: "white" });
-    } else if (visiblePercent <= 20) {
-      // Mostly out of green
-      setNavStyles({ bgColor: "white", textColor: "black" });
-    }
-    // If in between 20% and 60%, keep the last state (no flicker)
-  };
+      if (visiblePercent >= 60) {
+        // Mostly in green
+        setNavStyles({ bgColor: "transparent", textColor: "white" });
+      } else if (visiblePercent <= 20) {
+        // Mostly out of green
+        setNavStyles({ bgColor: "white", textColor: "black" });
+      }
+      // If in between 20% and 60%, keep the last state (no flicker)
+    };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("scroll", handleMouseScroll, { passive: true });
@@ -82,10 +81,11 @@ const Navbar = ({ mainContainerRef }) => {
       >
         {/* Logo */}
         <h2
-          className="font-semibold text-[1.5rem]"
+          className="font-semibold text-[1.5rem] flex items-center gap-2"
           style={{ color: navStyles.textColor }}
         >
-          Learning
+          <img src={imag2} alt="hacker" className="w-20" />
+          <div className="text-white font-bold text-xl">NACOMES</div>
         </h2>
 
         {/* Desktop Links */}
@@ -99,14 +99,14 @@ const Navbar = ({ mainContainerRef }) => {
             ["Blog", "/blog"],
             ["Contact", "/contact"],
           ].map(([label, path]) => (
-            <NavLink
+            <a
               key={path}
-              to={path}
+              href={path}
               style={{ color: navStyles.textColor }}
               className="hover:opacity-70 transition-colors duration-150"
             >
               {label}
-            </NavLink>
+            </a>
           ))}
         </div>
 
@@ -115,8 +115,14 @@ const Navbar = ({ mainContainerRef }) => {
           className="flex max-tablet:hidden items-center gap-4"
           style={{ color: navStyles.textColor }}
         >
-          <LuPhoneCall className="text-[1.055rem] mr-2" />
-          <p className="text-[1.05rem]">+243 7016 1275 02</p>
+          <a
+            href="#login"
+            className="px-4 py-2 bg-white text-blue-600 font-semibold rounded-lg 
+                    hover:scale-105 transform transition
+                    shadow-[-2px_2px_8px_black]"
+          >
+            Login
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -151,14 +157,14 @@ const Navbar = ({ mainContainerRef }) => {
             ["Blog", "/blog"],
             ["Contact", "/contact"],
           ].map(([label, path]) => (
-            <NavLink
+            <a
               key={path}
-              to={path}
+              href={path}
               onClick={() => setShowSidebar(false)}
               className="border-b-1 pb-3.5 text-[1.22rem] transition-colors duration-150 text-white hover:opacity-70"
             >
               {label}
-            </NavLink>
+            </a>
           ))}
         </div>
       </div>
