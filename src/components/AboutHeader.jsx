@@ -1,5 +1,5 @@
 import React from 'react'
-import student from '../assets/student.png'
+import student from '../assets/Student.png'
 
 function AboutHeader() {
   return (

@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import BlogView from "./components/BlogView";
 import FunFact from "./components/FunFact";
+import ScrollIndicator from "./components/ScrollIndicator";
 
 const App = () => {
   const mainContainerRef = useRef(null);
@@ -19,6 +20,7 @@ const App = () => {
   return (
     <div ref={mainContainerRef}>
       <Navbar mainContainerRef={mainContainerRef} />
+      <ScrollIndicator />
       <Header />
 
       <BlogPage />

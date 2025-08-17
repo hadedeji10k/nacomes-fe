@@ -52,7 +52,7 @@ const mockArticles = [
 ];
 
 const BlogPage = ({
-  imageUrl = "https://crafto.themezaa.com/elearning/wp-content/uploads/sites/28/2024/10/demo-elearnig-07-600x430.jpg.webp",
+  imageUrl = "https://crafto.themezaa.com/elearning/wp-content/uploads/sites/28/2024/10/demo-elearning-07-600x430.jpg.webp",
 }) => {
   const [articles, setArticles] = useState([]);
 
@@ -67,7 +67,7 @@ const BlogPage = ({
     <div className="min-h-screen w-screen transition-transform">
       <ScrollIndicator />
       <div
-        className="relative lg:h-[55%] h-[55%] w-full bg-cover max-[720px]:bg-center bg-no-repeat bg-(--dark-blue) flex items-center sm:pl-[20%] p-4"
+        className="relative min-[1440px]:h-[90vh] h-[90vh] w-full bg-cover max-[720px]:bg-center bg-no-repeat bg-(--dark-blue) flex items-center min-[640px]:pl-[20%] p-4"
         style={{ backgroundImage: `url(${imageUrl})` }}
       >
         <motion.div
@@ -101,14 +101,14 @@ const BlogPage = ({
               duration: 2,
               ease: [0.42, 0, 0.58, 1],
             }}
-            className="text-white text-3xl sm:text-5xl min[1440px]:text-6xl text-left font-[600]"
+            className="text-white text-3xl min-[720px]:text-5xl min-[1440px]:text-6xl text-left font-[600]"
           >
             Trending topic <br />
             Learning articles.
           </motion.h2>
         </motion.div>
       </div>
-      <div className="flex flex-wrap gap-6 justify-center max-[400px]:px-6 px-10 lg:px-40 py-20">
+      <div className="flex flex-wrap gap-6 justify-center max-[400px]:px-6 px-10 min-[1440px]:px-40 py-20">
         {articles.length === 0 ? (
           <div className="text-center text-gray-500">Loading articles...</div>
         ) : (
