@@ -8,11 +8,11 @@ function HeroSection() {
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom_right,#0077b6,#003566)]" />
 
         {/* Decorative blurred shapes */}
-        <div className="absolute -left-40 -top-40 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -right-24 bottom-0 w-72 h-72 bg-white opacity-10 rounded-full blur-3xl pointer-events-none" />
+        {/* <div className="absolute -left-40 -top-40 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -right-24 bottom-0 w-72 h-72 bg-white opacity-10 rounded-full blur-3xl pointer-events-none" /> */}
 
-        <div className="container mx-auto px-6 py-20 md:py-28">
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-1">
+        <div className="container mx-[10rem] px-6 py-20 md:py-28">
+          <div className="flex flex-row items-center md:items-start gap-1">
             {/* Left column: text */}
             <div className="w-full md:w-1/2 pr-16 pb-16 pl-24 mx-20">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
