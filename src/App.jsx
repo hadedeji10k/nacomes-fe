@@ -13,6 +13,7 @@ import Header from "./components/Header";
 import BlogView from "./components/BlogView";
 import FunFact from "./components/FunFact";
 import ScrollIndicator from "./components/ScrollIndicator";
+import ResourceTab from "./components/ResourcetTab";
 
 const App = () => {
   const mainContainerRef = useRef(null);
@@ -35,6 +36,8 @@ const App = () => {
       <FunFact />
 
       <Footer />
+
+      <ResourceTab />
     </div>
   );
 };

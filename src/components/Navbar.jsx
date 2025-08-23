@@ -9,7 +9,7 @@ const Navbar = ({ mainContainerRef }) => {
 
   const [navStyles, setNavStyles] = useState({
     bgColor: "transparent",
-    textColor: "white",
+    textColor: "#222/80",
   });
 
   useEffect(() => {
